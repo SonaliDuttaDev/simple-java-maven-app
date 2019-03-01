@@ -28,18 +28,14 @@ pipeline {
 			steps 	{
 					sh 'java -jar target/my-app-1.0-SNAPSHOT.jar'
 				}
-				{
-					rtServer (
-						    id: "Artifactory-1",
-						    url: "http://52.89.127.225:8081/artifactory/",
-						    // If you're using username and password:
-						    username: "admin",
-						    password: "password"
-						    // Configure the connection timeout (in seconds).
-						    // The default value (if not configured) is 300 seconds:
-						    timeout = 300
-)
-				}
+				
+		}
+		
+		stage('UploadArtifactory')
+		{
+			steps {
+				sh 'curl -x PUT -u admin:password -T target/my-app-1.0-SNAPSHOT.jar "http://52.89.127.225:8081/artifactory/example-repo-local/my-app-1.0-SNAPSHOT.jar"'
+			      }
 		}
 	}
 }
