@@ -34,7 +34,7 @@ pipeline {
 		stage('UploadArtifactory')
 		{
 			steps {
-				sh 'curl -x PUT -u admin:password -T target/my-app-1.0-SNAPSHOT.jar "http://52.89.127.225:8081/artifactory/example-repo-local/my-app-1.0-SNAPSHOT.jar"'
+				sh 'curl -X PUT -u admin:password -T target/my-app-1.0-SNAPSHOT.jar "http://52.89.127.225:8081/artifactory/example-repo-local/my-app-1.0-SNAPSHOT.jar"'
 			      }
 		}
 	}
